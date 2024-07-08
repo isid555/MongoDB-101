@@ -1,22 +1,31 @@
-const express = require('express');
-const mongoose = require('mongoose');
-require('dotenv').config();
+const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
+require('dotenv').config()
+const productRoutes = require('./routes/productRoutes')
+
 
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URL, {})
-.then(() =>{
-    console.log("Connected to MongoDB");
-})
-.catch((err) =>{
-    console.error("Failed"+err);
-})
+mongoose
+    .connect(process.env.MONGO_URL)
+    .then(() => {
+        console.log("Db Connected");
+    })
+    .catch((err) => {
+        console.log("Db connection Failed", err);
+    });
+
+
+app.use('/api/products' , productRoutes)
 
 
 
 
+// Create
 
-app.listen(8080,()=>{
-    console.log("Server started on port 8080");
-})
+
+
+app.listen(8080, () => {
+    console.log("Server sarted at port 8080");
+});
