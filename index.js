@@ -67,8 +67,13 @@ return res.json(allProducts);
 
 
 // get product by id
-app.get('/api/products')
+app.get("/api/products/:id" ,async (req,res)=>{
+    const productId = await productModel.findById(req.params.id);
+    return res.json(productId);
+})
 
+
+//
 
 app.listen(8080,()=>{
     console.log("Server started on port 8080");
