@@ -1,11 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+require('dotenv').config();
 const app = express();
 
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://r555sid:baahubali@cluster0.4scnnfu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGO_URL, {})
 .then(() =>{
     console.log("Connected to MongoDB");
 })
@@ -61,7 +61,7 @@ app.post("/api/products", async (req, res) => {
 
 //get route
 app.get("/api/products", async (req, res) => {
-const allProducts = await productModel.find({category: "Laptops"});
+const allProducts = await productModel.find({});
 return res.json(allProducts);
 })
 
@@ -77,6 +77,16 @@ app.get("/api/products/:id" ,async (req,res)=>{
 app.put("/api/products/:id",async (req,res)=>{
  const updatedProduct =    await productModel.findByIdAndUpdate(req.params.id , req.body);
  return res.json(updatedProduct);
+
+})
+
+
+
+//delete the product
+app.delete("/api/products/:id" ,async (req,res)=>{
+ const deletedproduct =    await productModel.findByIdAndDelete(req.params.id);
+     console.log("Product deleted !")
+    return res.json(deletedproduct);
 
 })
 
