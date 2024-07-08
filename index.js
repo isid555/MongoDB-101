@@ -59,6 +59,15 @@ app.post("/api/products", async (req, res) => {
 
 
 
+//get route
+app.get("/api/products", async (req, res) => {
+const allProducts = await productModel.find({category: "Laptops"});
+return res.json(allProducts);
+})
+
+
+// get product by id
+app.get('/api/products')
 
 
 app.listen(8080,()=>{
