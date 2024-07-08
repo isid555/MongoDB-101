@@ -1,28 +1,23 @@
-// Product Schema
-
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
 
 const productSchema = new mongoose.Schema({
     product_name: {
         type: String,
         required: true,
-
     },
-    product_price :{
+    product_price: {
         type: String,
         required: true,
     },
-    isInStock:{
+    isInStock: {
         type: Boolean,
-        required:true,
+        required: true,
     },
-    category :{
+    category: {
         type: String,
         required: true,
-    }
+    },
+});
 
-
-})
-
-
-module.exports =  mongoose.model('products',productSchema);
+module.exports = mongoose.model("products", productSchema);
+  

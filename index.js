@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 require('dotenv').config()
 const productRoutes = require('./routes/productRoutes')
-
+const userRoutes = require('./routes/userRoutes')
 
 app.use(express.json());
 
@@ -18,6 +18,7 @@ mongoose
 
 
 app.use('/api/products' , productRoutes)
+app.use('/api/users' ,userRoutes )
 
 
 
@@ -26,6 +27,6 @@ app.use('/api/products' , productRoutes)
 
 
 
-app.listen(8080, () => {
-    console.log("Server sarted at port 8080");
+app.listen(8086, () => {
+    console.log("Server sarted at port 8086");
 });
